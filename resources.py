@@ -1,16 +1,16 @@
 import os
+import json
 from app import app
 from app import db
 from flask_restful import Resource
-import jsonify
+from flask import request 
 
 class Query(Resource):
 
-    def get(self):
-        result = db.engine.execute("SELECT DISTINCT state FROM BUSINESS;").fetchall() 
-        states = []
-        for i in result:
-            states.append(i[0])
+    def post(self):
+        query = request.get_json()
+        result = db.engine.execute(query['query']).fetchall()
+        response = [dict(r) for r in result]
         return {
-            "states": states
+            "result": response
         }

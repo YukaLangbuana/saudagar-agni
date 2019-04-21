@@ -26,7 +26,7 @@ class Business(db.Model):
     state = db.Column(db.String())
     zipcode = db.Column(db.Integer)
     numcheckins = db.Column(db.Integer)
-    stars = db.Column(db.Integer)
+    stars = db.Column(db.Float())
     numreviews = db.Column(db.Integer)
     avgrating = db.Column(db.Float())
     isopen = db.Column(db.Integer)

@@ -14,14 +14,8 @@ db = SQLAlchemy(app)
 api = Api(app)
 
 #CORS
-CORS(app, resources={r"/api/*": {"origins": "*"}})
+CORS(app)
 
 import models, resources
 #############################################################################
-
 api.add_resource(resources.Query, '/api/query')
-
-@app.route("/")
-def hello():
-    result = db.engine.execute("SELECT DISTINCT state FROM BUSINESS;").fetchall() 
-    return  str(result)
